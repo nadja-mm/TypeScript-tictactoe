@@ -1,0 +1,85 @@
+/*nollställning av horisontell overflow och Vites standard-padding*/
+html, body, #root {height: 100%;}
+html, body {margin: 0; overflow-x: hidden;}
+#root {padding: 0 !important;} 
+
+*{ 
+  box-sizing: border-box; 
+}
+
+.app{
+  width: 100%;
+  max-width: 360px;
+  margin: 24px auto;
+  padding: 16px;
+  text-align: center;
+}
+
+h1{
+  margin: 0 0 12px;
+  font-size: clamp(22px, 5vw, 28px);
+  background-color: rgb(230, 98, 137);
+  border-radius: 50%;
+}
+
+.status{
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: clamp(14px, 3.5vw, 16px);
+  background-color: #f5f794;
+  border-radius: 50%;
+}
+
+/*brädet fyller container-bredden utan att spränga layouten*/
+.board{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /*hindrar overflow*/
+  gap: clamp(6px, 2.5vw, 8px);
+}
+
+/*rutorna*/
+.cell{
+  aspect-ratio: 1 / 1; /*alltid kvadrat*/
+  display: grid;
+  place-items: center;
+  font-size: clamp(28px, 10vw, 40px);
+  font-weight: 700;
+  border: 2px solid #222;
+  border-radius: 15px;
+  cursor: pointer;
+  background: #ffffff;
+  transition: transform 0.05s ease;
+}
+
+.cell:active{ 
+  transform: scale(0.98); 
+}
+
+.actions{ 
+  margin-bottom: 8px; 
+}
+
+/*knappen håller sig inom container*/
+.reset{
+  width: 100%;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 12px;
+  background: #222;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.reset:hover{ filter: brightness(1.1); }
+
+/*lite luftigt på större skärmar*/
+@media (min-width: 768px){
+  .app { margin: 40px auto; }
+  .reset { width: auto; }
+}
+
+
+
+
